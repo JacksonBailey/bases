@@ -5,6 +5,7 @@
 plugins {
     // Apply the java Plugin to add support for Java.
     java
+    `maven-publish`
 }
 
 repositories {
@@ -22,7 +23,20 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
 }
 
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
+        }
+    }
 }
