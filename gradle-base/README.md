@@ -2,6 +2,9 @@
 
 ## `gradle init`
 
+Gradle init was done as one of the first steps. To see the diff run
+`git diff 885d21c50ab229941e8320669ea3c20b71ddd5af..bb733400035c1911037b65d176f85fb4b434954f`
+
 ***Warning:*** Running this will overwrite your `.gitignore` and `.gitattribute`
 
 For reference, this is how the gradle project was generated. It was ran in this base, not from the
