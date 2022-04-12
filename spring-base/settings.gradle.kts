@@ -9,3 +9,13 @@
 
 rootProject.name = "greeter"
 include("app", "list", "utilities")
+
+dependencyResolutionManagement {
+    versionCatalogs {
+        create("libs") {
+            version("spring-boot", "2.6.6")
+            plugin("boot", "org.springframework.boot").versionRef("spring-boot")
+            library("spring-boot-dependencies", "org.springframework.boot", "spring-boot-dependencies").versionRef("spring-boot")
+        }
+    }
+}

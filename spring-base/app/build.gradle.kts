@@ -4,9 +4,11 @@
 
 plugins {
     id("com.example.greeter.java-application-conventions")
+    alias(libs.plugins.boot)
 }
 
 dependencies {
+    implementation(platform(libs.spring.boot.dependencies))
     implementation("org.apache.commons:commons-text")
     implementation(project(":utilities"))
 }
