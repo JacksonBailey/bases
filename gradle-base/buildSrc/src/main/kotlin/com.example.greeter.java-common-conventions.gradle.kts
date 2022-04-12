@@ -28,9 +28,16 @@ java {
     withSourcesJar()
 }
 
-tasks.named<Test>("test") {
-    // Use JUnit Platform for unit tests.
-    useJUnitPlatform()
+tasks {
+
+    named<Test>("test") {
+        // Use JUnit Platform for unit tests.
+        useJUnitPlatform()
+    }
+
+    withType<JavaCompile>().configureEach {
+        options.encoding = "UTF-8"
+    }
 }
 
 publishing {
