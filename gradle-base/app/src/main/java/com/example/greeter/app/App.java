@@ -11,7 +11,16 @@ import static com.example.greeter.app.MessageUtils.getMessage;
 
 import org.apache.commons.text.WordUtils;
 
+/**
+ * Contain's the application's main method
+ */
 public class App {
+
+    /**
+     * The main method of the application.
+     *
+     * @param args ignored
+     */
     public static void main(String[] args) {
         LinkedList tokens;
         tokens = split(getMessage());

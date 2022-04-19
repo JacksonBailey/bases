@@ -3,9 +3,18 @@
  */
 package com.example.greeter.list;
 
+/**
+ * A simple implementation of a linked list. Included to show how multiple modules work within
+ * Gradle.
+ */
 public class LinkedList {
     private Node head;
 
+    /**
+     * Adds an element to the end of the list.
+     *
+     * @param element the element to add
+     */
     public void add(String element) {
         Node newNode = new Node(element);
 
@@ -25,6 +34,14 @@ public class LinkedList {
         return it;
     }
 
+    /**
+     * Removes the first element of the list that matches according to
+     * {@link String#compareTo(String)}. Returns true if such an element is removed and false
+     * otherwise.
+     *
+     * @param element the element to remove from the list
+     * @return true if an element is removed; false otherwise
+     */
     public boolean remove(String element) {
         boolean result = false;
         Node previousIt = null;
@@ -48,6 +65,11 @@ public class LinkedList {
         }
     }
 
+    /**
+     * Returns the size of the list.
+     *
+     * @return the size of the list
+     */
     public int size() {
         int size = 0;
 
@@ -56,6 +78,14 @@ public class LinkedList {
         return size;
     }
 
+    /**
+     * Returns the nth element of the list. The index is 0-based.
+     *
+     * @param index the index of the element to return
+     * @return the nth element of the list
+     * @throws IndexOutOfBoundsException if the index is out of range
+     *         ({@code index < 0 || index > size()})
+     */
     public String get(int index) {
         Node it = head;
         while (index > 0 && it != null) {

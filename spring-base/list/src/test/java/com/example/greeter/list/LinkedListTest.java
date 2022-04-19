@@ -30,12 +30,18 @@ class LinkedListTest {
 
         list.add("one");
         list.add("two");
+        list.add("one");
         assertTrue(list.remove("one"));
 
-        assertEquals(1, list.size());
+        assertEquals(2, list.size());
         assertEquals("two", list.get(0));
+        assertEquals("one", list.get(1));
 
         assertTrue(list.remove("two"));
+        assertEquals(1, list.size());
+        assertEquals("one", list.get(0));
+
+        assertTrue(list.remove("one"));
         assertEquals(0, list.size());
     }
 
