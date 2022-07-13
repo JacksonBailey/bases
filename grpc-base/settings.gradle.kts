@@ -8,4 +8,4 @@
  */
 
 rootProject.name = "greeter"
-include("app", "list", "utilities")
+include("app", "list", "utilities", "grpc")
