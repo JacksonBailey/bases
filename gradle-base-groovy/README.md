@@ -74,3 +74,33 @@ gitignore file be sure to use `intellij+all` specifically, not `intellij`.
 Below is the link to use to generate the gitignore for Java and Gradle.
 
     https://www.toptal.com/developers/gitignore/api/java,gradle
+
+## Gradle tweaks
+
+Newer versions of Gradle may be released. The "gradle approved" way of upgrading the gradle wrapper
+is to use the `gradle wrapper` command itself. Using the versions HTTP API that Gradle provides we
+can get the latest version and its checksum. By default the checksum is not included, I do not
+know why, but I add it for good measure. It may be worth mentioning that this only checks the sha256
+sum of the distribution, *not* the `gradle-wrapper.jar` file. If you want to be sure about that as
+well you can check the documentation section "Verifying the integrity of the Gradle Wrapper JAR".
+
+The below runs `gradle wrapper` a second time as the documentation explains,
+
+> Note that running the wrapper task once will update `gradle-wrapper.properties` only, but leave
+the wrapper itself in `gradle-wrapper.jar` untouched. This is usually fine as new versions of Gradle
+can be run even with ancient wrapper files. If you nevertheless want all the wrapper files to be
+completely up-to-date, you’ll need to run the wrapper task a second time.
+
+[Documentation link](https://docs.gradle.org/current/userguide/gradle_wrapper.html)
+
+    newest_gradle_version="$(curl --silent https://services.gradle.org/versions/current | jq --raw-output '.version')"
+    newest_gradle_sha256_sum="$(curl --silent --location \
+        $(curl --silent https://services.gradle.org/versions/current | jq --raw-output '.checksumUrl'))"
+
+    gradle wrapper --gradle-version "${newest_gradle_version}" \
+                   --distribution-type bin \
+                   --gradle-distribution-sha256-sum "${newest_gradle_sha256_sum}" \
+        && \
+    gradle wrapper --gradle-version "${newest_gradle_version}" \
+                   --distribution-type bin \
+                   --gradle-distribution-sha256-sum "${newest_gradle_sha256_sum}"
