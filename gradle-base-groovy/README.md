@@ -4,6 +4,9 @@ There is already a Gradle base configuration but after fooling around with Kotli
 
 ## `gradle init`
 
+Gradle init was done as one of the first steps. To see the diff run
+`git diff ec1c209e220b1d667ce9144d31ac5271b6ab361c..08877e244dfae84ea0b27803f877b613edba6864`
+
 ***Warning:*** Running this will overwrite your `.gitignore` and `.gitattribute`
 
 For reference, this is how the gradle project was generated. It was ran in this base, not from the
