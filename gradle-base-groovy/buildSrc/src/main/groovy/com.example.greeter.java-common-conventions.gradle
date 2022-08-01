@@ -5,6 +5,7 @@
 plugins {
     // Apply the java Plugin to add support for Java.
     id 'java'
+    id 'maven-publish'
 }
 
 repositories {
@@ -23,6 +24,11 @@ dependencies {
 }
 
 java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
     }
@@ -31,4 +37,12 @@ java {
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
 }
