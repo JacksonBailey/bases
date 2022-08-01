@@ -132,3 +132,7 @@ run older versions and compile to newer (ex: run Gradle wrapper in Java 8 but ta
 We add the version (which is used even for "vanilla" Gradle) into the `gradle.properties` file. The group is set in `allprojects` block from a `build.gradle` at base. The artifact name is just the project name. *The project names are not always unique, just be aware.*
 
 The Javadoc and sources should be published so these are added to the `com.example.greeter.java-common-conventions.gradle` file.
+
+## Encoding
+
+We set all `JavaCompile` tasks to use UTF-8 encoding.
