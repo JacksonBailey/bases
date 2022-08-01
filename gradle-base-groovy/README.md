@@ -104,3 +104,23 @@ completely up-to-date, you’ll need to run the wrapper task a second time.
     gradle wrapper --gradle-version "${newest_gradle_version}" \
                    --distribution-type bin \
                    --gradle-distribution-sha256-sum "${newest_gradle_sha256_sum}"
+
+## Java version
+
+### `.java_version`
+
+I am using [jenv](https://www.jenv.be/) to set the Java version. In the future I may use sdkman but
+as if now I don't. You don't need to use either, I'm just explaining why this file is here. In fact,
+I intend to use gradle toolchains so gradle could in theory run with an older and compile with a
+newer version.
+
+### `com.example.greeter.java-common-conventions.gradle`
+
+This is the new way to specify the Java version to use. My understanding is it also allows you to
+run older versions and compile to newer (ex: run Gradle wrapper in Java 8 but target Java 17).
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(17)
+        }
+    }
