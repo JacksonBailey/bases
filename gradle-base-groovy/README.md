@@ -120,11 +120,11 @@ newer version.
 ### `com.example.greeter.java-common-conventions.gradle`
 
 This is the new way to specify the Java version to use. My understanding is it also allows you to
-run older versions and compile to newer (ex: run Gradle wrapper in Java 8 but target Java 17).
+run older versions and compile to newer (ex: run Gradle wrapper in Java 8 but target Java 18).
 
     java {
         toolchain {
-            languageVersion = JavaLanguageVersion.of(17)
+            languageVersion = JavaLanguageVersion.of(18)
         }
     }
 
@@ -136,6 +136,14 @@ We add the version (which is used even for "vanilla" Gradle) into the `gradle.pr
 
 The Javadoc and sources should be published so these are added to the `com.example.greeter.java-common-conventions.gradle` file.
 
-## Encoding
+## Next steps
 
-We set all `JavaCompile` tasks to use UTF-8 encoding.
+- Change Maven group ID in `build.gradle`: `<inverted domain name>`
+  - Optionally `<inverted domain name>.<project grouping>`. As an example, if you were making a large group of projects named Foo you should use `com.example.foo` instead of `com.example`.
+- Change the Maven artifact ID in `settings.gradle` (`rootProject.name`) to the name of your project
+  - Optionally `<project grouping>-<project name>`. As an example, if you were making a large group of projects named Foo and the specific one is Bar then `foo-bar`.
+  - TODO The above leads to `com.example.foo:foo-bar` which sounds overly verbose but it still my opinion of what's correct. I should look into what projects actually do because I thought they did this but Spring doesn't.
+- Change package names: `<Maven group ID>.<project name>`, e.g. `com.example.foo.bar`
+- Rename files in `buildSrc` from `com.example.greeter.<java-*>` to `<package name>.<java-*>` and change the lines referencing them in any `gradle.build` files using them.
+- Add or remove any application or library modules (and rename) and update `settings.gradle`'s `include` method call accordingly.
+- To ignore Javadoc warnings add `javadoc.options.addStringOption('Xdoclint:none', '-quiet')` to the `build.gradle` file for that project. This just mutes the errors which are annoying in the early stages of a project.
